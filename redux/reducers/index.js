@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-import languages from "./languages";
+import users from "./users";
 
 export default combineReducers({
-    languages
+    users
 });

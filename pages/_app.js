@@ -1,20 +1,32 @@
+import App from "next/app";
 import React from 'react';
+import { Provider } from "react-redux";
+import { createWrapper } from "next-redux-wrapper";
+import store from "../redux/store";
 
 import '../styles/global.css'
 //import '../styles/navbar.css'
 
-import { Provider } from "react-redux";
-import store from "../redux/store";
+//import { appWithTranslation } from 'next-i18next';
 
-import { appWithTranslation } from 'next-i18next';
 
-// This default export is required in a new `pages/_app.js` file.
-function MyApp({ Component, pageProps }) {
-    return (
-        <Provider store={store}>
-            <Component {...pageProps}/>
-        </Provider>
-    );
+class MyApp extends App {
+    render(){
+        const { Component, pageProps } = this.props;
+        return (
+            <Provider store={store}>
+                <Component {...pageProps}/>
+            </Provider>
+        );
+    }
 }
 
-export default appWithTranslation(MyApp);
+const makestore = () => store;
+const wrapper = createWrapper(makestore);
+export default wrapper.withRedux(MyApp);
+
+//export default appWithTranslation(MyApp);
+
+
+
+
