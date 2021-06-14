@@ -1,13 +1,13 @@
 const initialState = {
-    users: null,
+    units: null,
 };
 
 const reduserUsers = (state = initialState, action) => {
     switch (action.type) {
-        case "SET_USERS":
+        case "SET_UNITS":
             return {
                 ...state,
-                users: action.payload,
+                units: action.payload,
             };
         default:
             return state;
